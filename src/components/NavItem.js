@@ -1,9 +1,7 @@
 import React from "react";
-import { Flex, Icon, useColorModeValue, useDisclosure } from "@chakra-ui/react";
+import { Flex, Icon, useColorModeValue } from "@chakra-ui/react";
 
-const NavItem = (props) => {
-    const { icon, children, ...rest } = props;
-    const integrations = useDisclosure();
+const NavItem = ({ icon, children, ...rest }) => {
     const color = useColorModeValue("gray.600", "gray.300");
     return (
         <Flex
