@@ -9,6 +9,9 @@
 # production
 /build
 
+# binaries
+/bin
+
 # misc
 .DS_Store
 .env
