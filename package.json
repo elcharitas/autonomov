@@ -28,6 +28,8 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "@openzeppelin/contracts-upgradeable": "^4.5.2"
+    "@openzeppelin/contracts-upgradeable": "^4.5.2",
+    "dotenv": "^16.0.0",
+    "hardhat": "^2.9.0"
   }
 }
