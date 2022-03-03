@@ -1,0 +1,29 @@
+{
+  "name": "autonomov",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@chakra-ui/react": "^1.8.6",
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
+    "ethers": "^5.5.4",
+    "framer-motion": "^6.2.8",
+    "ipfs": "^0.62.1",
+    "lodash": "^4.17.21",
+    "orbit-db": "^0.28.3",
+    "plyr": "^3.6.12",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-pwa-app": "^2.2.2",
+    "react-scripts": "0.9.5",
+    "web3.storage": "^3.5.6",
+    "web3modal": "^1.9.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
