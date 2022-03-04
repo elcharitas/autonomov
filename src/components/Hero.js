@@ -4,10 +4,6 @@ import {
     Box,
     useColorModeValue,
     Flex,
-    SimpleGrid,
-    GridItem,
-    VisuallyHidden,
-    Input,
     Stack,
     Icon,
 } from "@chakra-ui/react";

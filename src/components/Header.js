@@ -1,13 +1,11 @@
 import React from "react";
 import {
-    Box,
     Flex,
     Icon,
     IconButton,
     Input,
     InputGroup,
     InputLeftElement,
-    useBoolean,
     useBreakpointValue,
     useColorModeValue,
 } from "@chakra-ui/react";
@@ -28,7 +26,8 @@ export default function Header({ sidebar }) {
             bg={useColorModeValue("blackAlpha.900", "gray.800")}
             borderBottomWidth="1px"
             borderColor={useColorModeValue("blackAlpha.900", "gray.700")}
-            h="16">
+            h="16"
+        >
             <IconButton
                 aria-label="Menu"
                 display={{ base: "inline-flex" }}
@@ -45,7 +44,8 @@ export default function Header({ sidebar }) {
             <InputGroup
                 w="100"
                 display={{ base: "none", md: "flex" }}
-                borderColor={useColorModeValue("whiteAlpha.400", "gray.700")}>
+                borderColor={useColorModeValue("whiteAlpha.400", "gray.700")}
+            >
                 <InputLeftElement color="gray.500">
                     <FiSearch />
                 </InputLeftElement>

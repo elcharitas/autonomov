@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, useConst, useControllableState } from "@chakra-ui/react";
+import { Avatar } from "@chakra-ui/react";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 
@@ -20,9 +20,7 @@ export default function Session() {
 
     const [account, setAccount] = useState("");
 
-    const [avatar, setAvatar] = useState("");
-
-    const [provider, setProvider] = useState(null);
+    //const [provider, setProvider] = useState(null);
 
     useEffect(() => {
         Promise.resolve(
@@ -30,13 +28,11 @@ export default function Session() {
                 const instance = await web3Modal.connect();
                 const provider = new ethers.providers.Web3Provider(instance);
                 const account = await provider.listAccounts()[0];
-                setProvider(provider);
+                //setProvider(provider);
                 setAccount(account);
             })()
         );
     });
 
-    return (
-        <Avatar ml="4" size="sm" src={avatar} name={account} cursor="pointer" />
-    );
+    return <Avatar ml="4" size="sm" name={account} cursor="pointer" />;
 }

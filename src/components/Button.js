@@ -1,5 +1,5 @@
 import React from "react";
-import { Button as CButton, Stack, useColorModeValue } from "@chakra-ui/react";
+import { Button as CButton, useColorModeValue } from "@chakra-ui/react";
 
 const Button = ({ key, size = "sm", text }) => {
     const scheme = "red";
