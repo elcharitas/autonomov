@@ -16,7 +16,7 @@ const Footer = ({ color }) => {
             <Link as={RLink} color="red.500" to="/">
                 {appName}
             </Link>
-            . Built using
+            . Built using &nbsp;
             <Link href="" color="red.500" to="/">
                 IPFS
             </Link>
