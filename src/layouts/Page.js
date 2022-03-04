@@ -5,6 +5,7 @@ import {
     DrawerContent,
     DrawerOverlay,
     useDisclosure,
+    useBoolean,
 } from "@chakra-ui/react";
 
 import Base from "./Base";
@@ -13,14 +14,17 @@ import Sidebar from "../components/Sidebar";
 
 export default function Page({ children, title = "" }) {
     const sidebar = useDisclosure();
+    const [visible, { toggle }] = useBoolean(true);
+    sidebar.toggle = toggle;
     return (
         <Base title={title}>
-            <Sidebar display={{ base: "none", md: "unset" }} />
+            <Sidebar
+                display={{ base: "none", md: visible ? "unset" : "none" }}
+            />
             <Drawer
                 isOpen={sidebar.isOpen}
                 onClose={sidebar.onClose}
-                placement="left"
-            >
+                placement="left">
                 <DrawerOverlay />
                 <DrawerContent>
                     <Sidebar w="full" borderRight="none" />
