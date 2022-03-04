@@ -15,7 +15,11 @@ import { BiMenuAltLeft, BiVideoPlus } from "react-icons/bi";
 
 import Session from "./Session";
 
-export default function Header({ sidebar }) {
+export default function Header({
+    sidebar,
+    account: [, setAccount],
+    provider: [, setProvider],
+}) {
     return (
         <Flex
             as="header"
@@ -69,7 +73,7 @@ export default function Header({ sidebar }) {
                     size={28}
                     cursor="pointer"
                 />
-                <Session />
+                <Session setAccount={setAccount} setProvider={setProvider} />
             </Flex>
         </Flex>
     );
