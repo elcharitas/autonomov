@@ -28,9 +28,7 @@ export default function Page({ children, title = "" }) {
             </Drawer>
             <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
                 <Header sidebar={sidebar} />
-                <Box as="main" p="4">
-                    {children}
-                </Box>
+                <Box as="main">{children}</Box>
             </Box>
         </Base>
     );
