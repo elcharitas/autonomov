@@ -1,6 +1,5 @@
 import React from "react";
 import {
-    Avatar,
     Flex,
     Icon,
     IconButton,
@@ -26,8 +25,7 @@ export default function Header({ sidebar }) {
             bg={useColorModeValue("blackAlpha.900", "gray.800")}
             borderBottomWidth="1px"
             borderColor={useColorModeValue("blackAlpha.900", "gray.700")}
-            h="16"
-        >
+            h="16">
             <IconButton
                 aria-label="Menu"
                 display={{ base: "inline-flex", md: "none" }}
@@ -44,8 +42,7 @@ export default function Header({ sidebar }) {
                         "blackAlpha.400",
                         "gray.700"
                     )}
-                    color={"whiteAlpha"}
-                >
+                    color={"whiteAlpha"}>
                     <InputLeftElement color="gray.500">
                         <FiSearch />
                     </InputLeftElement>
