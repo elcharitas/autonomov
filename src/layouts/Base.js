@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { Box, Spinner, useColorModeValue } from "@chakra-ui/react";
+import { Box, Spinner, useColorModeValue, useBoolean } from "@chakra-ui/react";
 
 const Base = ({ children, title }) => {
-    const [loaded, setStatus] = useState(false);
+    const [loaded, setLoaded] = useBoolean(false);
 
     document.onreadystatechange = () => {
         if (document.readyState === "complete") {
-            setStatus(true);
+            setLoaded.on();
         } else if (title) {
             document.title = title;
         }

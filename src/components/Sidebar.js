@@ -22,7 +22,7 @@ const Sidebar = (props) => {
             overflowX="hidden"
             overflowY="auto"
             bg={useColorModeValue("blackAlpha.900", "gray.800")}
-            borderColor={useColorModeValue("inherit", "gray.700")}
+            borderColor={useColorModeValue("blackAlpha.900", "gray.700")}
             borderRightWidth="1px"
             w="60"
             {...props}
@@ -36,6 +36,7 @@ const Sidebar = (props) => {
                 fontSize="sm"
                 color="gray.600"
                 aria-label="Main Navigation"
+                borderTop={"ActiveBorder"}
             >
                 <NavItem icon={MdHome}>Home</NavItem>
                 <NavItem icon={FaRss}>Trending</NavItem>

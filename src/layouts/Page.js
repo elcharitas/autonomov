@@ -27,7 +27,7 @@ export default function Page({ children, title = "" }) {
                 </DrawerContent>
             </Drawer>
             <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
-                <Header />
+                <Header sidebar={sidebar} />
                 <Box as="main" p="4">
                     {children}
                 </Box>

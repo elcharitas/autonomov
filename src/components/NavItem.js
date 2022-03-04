@@ -10,7 +10,7 @@ const NavItem = ({ icon, children, ...rest }) => {
             pl="4"
             py="3"
             cursor="pointer"
-            color={useColorModeValue("inherit", "gray.400")}
+            color={useColorModeValue("white", "gray.400")}
             _hover={{
                 bg: useColorModeValue("gray.100", "gray.900"),
                 color: useColorModeValue("gray.900", "gray.200"),

@@ -8,13 +8,14 @@ import {
     InputGroup,
     InputLeftElement,
     useColorModeValue,
-    useDisclosure,
 } from "@chakra-ui/react";
 import { FaBell } from "react-icons/fa";
 import { FiMenu, FiSearch } from "react-icons/fi";
+import { BiMenuAltLeft, BiVideoPlus } from "react-icons/bi";
 
-export default function Header() {
-    const sidebar = useDisclosure();
+import Session from "./Session";
+
+export default function Header({ sidebar }) {
     return (
         <Flex
             as="header"
@@ -22,20 +23,29 @@ export default function Header() {
             justify="space-between"
             w="full"
             px="4"
-            bg={useColorModeValue("white", "gray.800")}
+            bg={useColorModeValue("blackAlpha.900", "gray.800")}
             borderBottomWidth="1px"
-            borderColor={useColorModeValue("inherit", "gray.700")}
-            h="14"
+            borderColor={useColorModeValue("blackAlpha.900", "gray.700")}
+            h="16"
         >
             <IconButton
                 aria-label="Menu"
                 display={{ base: "inline-flex", md: "none" }}
                 onClick={sidebar.onOpen}
-                icon={<FiMenu />}
-                size="sm"
+                icon={<BiMenuAltLeft size={20} />}
+                size="md"
             />
             <Flex justify={"end"}>
-                <InputGroup w="96" display={{ base: "none", md: "flex" }}>
+                <InputGroup
+                    w="96"
+                    display={{ base: "none", md: "flex" }}
+                    alignSelf="self-end"
+                    borderColor={useColorModeValue(
+                        "blackAlpha.400",
+                        "gray.700"
+                    )}
+                    color={"whiteAlpha"}
+                >
                     <InputLeftElement color="gray.500">
                         <FiSearch />
                     </InputLeftElement>
@@ -44,14 +54,20 @@ export default function Header() {
             </Flex>
 
             <Flex justify={"flex-end"} align="center">
-                <Icon color="gray.500" as={FaBell} cursor="pointer" />
-                <Avatar
-                    ml="4"
-                    size="sm"
-                    name="anubra266"
-                    src="https://avatars.githubusercontent.com/u/30869823?v=4"
+                <Icon
+                    color="gray.500"
+                    as={BiVideoPlus}
+                    size={28}
                     cursor="pointer"
                 />
+                <Icon
+                    ml="4"
+                    color="gray.500"
+                    as={FaBell}
+                    size={28}
+                    cursor="pointer"
+                />
+                <Session />
             </Flex>
         </Flex>
     );
