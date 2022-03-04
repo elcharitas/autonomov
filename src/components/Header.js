@@ -1,20 +1,24 @@
 import React from "react";
 import {
+    Box,
     Flex,
     Icon,
     IconButton,
     Input,
     InputGroup,
     InputLeftElement,
+    useBoolean,
+    useBreakpointValue,
     useColorModeValue,
 } from "@chakra-ui/react";
 import { FaBell } from "react-icons/fa";
-import { FiMenu, FiSearch } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import { BiMenuAltLeft, BiVideoPlus } from "react-icons/bi";
 
 import Session from "./Session";
 
 export default function Header({ sidebar }) {
+    const [visible, { toggle }] = useBoolean(false);
     return (
         <Flex
             as="header"
@@ -25,30 +29,34 @@ export default function Header({ sidebar }) {
             bg={useColorModeValue("blackAlpha.900", "gray.800")}
             borderBottomWidth="1px"
             borderColor={useColorModeValue("blackAlpha.900", "gray.700")}
-            h="16">
+            h="16"
+        >
             <IconButton
                 aria-label="Menu"
-                display={{ base: "inline-flex", md: "none" }}
-                onClick={sidebar.onOpen}
+                display={{ base: "inline-flex" }}
+                onClick={useBreakpointValue({
+                    base: sidebar.onOpen,
+                    md: toggle,
+                })}
                 icon={<BiMenuAltLeft size={20} />}
+                color="white"
+                _hover={{ color: "whiteAlpha.600" }}
+                bgColor="transparent"
                 size="md"
             />
-            <Flex justify={"end"}>
-                <InputGroup
-                    w="96"
-                    display={{ base: "none", md: "flex" }}
-                    alignSelf="self-end"
-                    borderColor={useColorModeValue(
-                        "blackAlpha.400",
-                        "gray.700"
-                    )}
-                    color={"whiteAlpha"}>
-                    <InputLeftElement color="gray.500">
-                        <FiSearch />
-                    </InputLeftElement>
-                    <Input placeholder="Search for videos, users, streams..." />
-                </InputGroup>
-            </Flex>
+            <InputGroup
+                w="100"
+                display={{ base: "none", md: "flex" }}
+                borderColor={useColorModeValue("whiteAlpha.400", "gray.700")}
+            >
+                <InputLeftElement color="gray.500">
+                    <FiSearch />
+                </InputLeftElement>
+                <Input
+                    placeholder="Search for videos, users, streams..."
+                    color={useColorModeValue("white", "blackAlpha.900")}
+                />
+            </InputGroup>
 
             <Flex justify={"flex-end"} align="center">
                 <Icon

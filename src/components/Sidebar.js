@@ -25,7 +25,8 @@ const Sidebar = (props) => {
             borderColor={useColorModeValue("blackAlpha.900", "gray.700")}
             borderRightWidth="1px"
             w="60"
-            {...props}>
+            {...props}
+        >
             <Flex px="4" py="5" align="center" justify={"space-around"}>
                 <Logo width={"120px"} />
             </Flex>
@@ -33,17 +34,20 @@ const Sidebar = (props) => {
             <Flex
                 direction="column"
                 as="nav"
+                py="2em"
                 fontSize="sm"
                 color="gray.600"
                 aria-label="Main Navigation"
-                borderTop={"ActiveBorder"}>
+                borderTop={"1px"}
+                borderColor={useColorModeValue("whiteAlpha.400", "gray.700")}
+            >
                 <NavItem icon={MdHome}>Home</NavItem>
                 <NavItem icon={HiCollection}>Explore</NavItem>
                 <NavItem icon={FaRss}>Trending</NavItem>
-                <Divider />
+                <Divider py="1em" mb="1.5em" />
                 <NavItem icon={HiCollection}>Collections</NavItem>
                 <NavItem icon={FaClipboardCheck}>Live Streams</NavItem>
-                <Divider />
+                <Divider py="1em" mb="1.5em" />
                 <NavItem icon={AiFillGift}>Changelog</NavItem>
                 <NavItem icon={BsGearFill}>Settings</NavItem>
             </Flex>
