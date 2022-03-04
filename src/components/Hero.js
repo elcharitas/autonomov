@@ -8,11 +8,11 @@ import {
     GridItem,
     VisuallyHidden,
     Input,
-    Button,
     Stack,
     Icon,
 } from "@chakra-ui/react";
 
+import Button from "./Button";
 import HeaderImage from "../images/header.jpg";
 
 const Hero = () => {
@@ -68,27 +68,23 @@ const Hero = () => {
                         is introducing a new better way of video sharing on
                         Decentralized web...
                     </chakra.p>
-                    <VisuallyHidden>Your Email</VisuallyHidden>
-                    <Input
-                        mt={0}
-                        size="lg"
-                        type="text"
-                        textAlign={"center"}
+                    <Button
+                        size="md"
                         color={useColorModeValue("gray.100", "gray.900")}
-                        placeholder="Enter a $MATIC address..."
-                        required={true}
+                        text="Get Started"
                     />
                     <Stack
                         display="flex"
-                        direction={{ base: "column", md: "row" }}
-                        justifyContent={{ base: "start", md: "center" }}
-                        my={3}
+                        direction={"row"}
+                        justifyContent={"center"}
+                        my={4}
                         spacing={{ base: 2, md: 8 }}
                         fontSize="xs"
                         color="gray.600"
                     >
                         <Feature>Fully Decentralized</Feature>
-                        <Feature>No Ads</Feature>
+                        <Feature>Cheaper Fees</Feature>
+                        <Feature>List/Share Videos</Feature>
                         <Feature>Cancel anytime</Feature>
                     </Stack>
                 </Box>
