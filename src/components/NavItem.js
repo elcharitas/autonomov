@@ -1,7 +1,8 @@
 import React from "react";
-import { Flex, Icon, useColorModeValue } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Box, Flex, Icon, useColorModeValue } from "@chakra-ui/react";
 
-const NavItem = ({ icon, children, ...rest }) => {
+const NavItem = ({ icon, href, children, ...rest }) => {
     const color = useColorModeValue("gray.600", "gray.300");
     return (
         <Flex
@@ -18,8 +19,7 @@ const NavItem = ({ icon, children, ...rest }) => {
             role="group"
             fontWeight="semibold"
             transition=".15s ease"
-            {...rest}
-        >
+            {...rest}>
             {icon && (
                 <Icon
                     mx="2"
@@ -30,7 +30,9 @@ const NavItem = ({ icon, children, ...rest }) => {
                     as={icon}
                 />
             )}
-            {children}
+            <Box as={href ? Link : "div"} to={href}>
+                {children}
+            </Box>
         </Flex>
     );
 };
