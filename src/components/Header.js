@@ -1,9 +1,11 @@
 import React from "react";
+import { Link as RLink } from "react-router-dom";
 import {
     Flex,
     Icon,
     IconButton,
     Input,
+    Link,
     InputGroup,
     InputLeftElement,
     useBreakpointValue,
@@ -60,12 +62,9 @@ export default function Header({
             </InputGroup>
 
             <Flex justify={"flex-end"} align="center">
-                <Icon
-                    color="gray.500"
-                    as={BiVideoPlus}
-                    size={28}
-                    cursor="pointer"
-                />
+                <Link color="gray.500" as={RLink} to="/create" cursor="pointer">
+                    <BiVideoPlus size={20} />
+                </Link>
                 <Icon
                     ml="4"
                     color="gray.500"
