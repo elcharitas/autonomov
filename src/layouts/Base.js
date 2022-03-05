@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useMemo } from "react";
 
 import {
     Box,
@@ -9,12 +9,13 @@ import {
 } from "@chakra-ui/react";
 
 const Base = ({ children, title }) => {
-    const [loaded, setLoaded] = useBoolean(false);
+    const [loaded, setLoaded] = useBoolean(true);
 
-    useEffect(() => {
-        if (document.readyState !== "loading") {
-            setLoaded.on();
+    useMemo(() => {
+        if (document.readyState === "loading") {
+            setLoaded.off();
         } else if (title) {
+            setLoaded.on();
             document.title = title;
         }
     });
