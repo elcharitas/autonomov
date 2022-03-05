@@ -1,13 +1,13 @@
 import React from "react";
+import { Link as RLink } from "react-router-dom";
 import {
-    Box,
     Flex,
     Icon,
     IconButton,
     Input,
+    Link,
     InputGroup,
     InputLeftElement,
-    useBoolean,
     useBreakpointValue,
     useColorModeValue,
 } from "@chakra-ui/react";
@@ -17,7 +17,11 @@ import { BiMenuAltLeft, BiVideoPlus } from "react-icons/bi";
 
 import Session from "./Session";
 
-export default function Header({ sidebar }) {
+export default function Header({
+    sidebar,
+    account: [, setAccount],
+    provider: [, setProvider],
+}) {
     return (
         <Flex
             as="header"
@@ -28,7 +32,8 @@ export default function Header({ sidebar }) {
             bg={useColorModeValue("blackAlpha.900", "gray.800")}
             borderBottomWidth="1px"
             borderColor={useColorModeValue("blackAlpha.900", "gray.700")}
-            h="16">
+            h="16"
+        >
             <IconButton
                 aria-label="Menu"
                 display={{ base: "inline-flex" }}
@@ -45,7 +50,8 @@ export default function Header({ sidebar }) {
             <InputGroup
                 w="100"
                 display={{ base: "none", md: "flex" }}
-                borderColor={useColorModeValue("whiteAlpha.400", "gray.700")}>
+                borderColor={useColorModeValue("whiteAlpha.400", "gray.700")}
+            >
                 <InputLeftElement color="gray.500">
                     <FiSearch />
                 </InputLeftElement>
@@ -56,12 +62,9 @@ export default function Header({ sidebar }) {
             </InputGroup>
 
             <Flex justify={"flex-end"} align="center">
-                <Icon
-                    color="gray.500"
-                    as={BiVideoPlus}
-                    size={28}
-                    cursor="pointer"
-                />
+                <Link color="gray.500" as={RLink} to="/create" cursor="pointer">
+                    <BiVideoPlus size={20} />
+                </Link>
                 <Icon
                     ml="4"
                     color="gray.500"
@@ -69,7 +72,7 @@ export default function Header({ sidebar }) {
                     size={28}
                     cursor="pointer"
                 />
-                <Session />
+                <Session setAccount={setAccount} setProvider={setProvider} />
             </Flex>
         </Flex>
     );

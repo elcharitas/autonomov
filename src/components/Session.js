@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Avatar, useConst, useControllableState } from "@chakra-ui/react";
+import React, { useState, useMemo } from "react";
+import { Avatar } from "@chakra-ui/react";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 
-export default function Session() {
+import { infuraId } from "../constants";
+
+export default function Session({ setAccount, setProvider }) {
     const providerOptions = {
         binancechainwallet: {
             package: true,
+        },
+        walletconnect: {
+            options: {
+                infuraId,
+            },
         },
     };
 
@@ -18,13 +25,9 @@ export default function Session() {
         providerOptions,
     });
 
-    const [account, setAccount] = useState("");
+    //const [provider, setProvider] = useState(null);
 
-    const [avatar, setAvatar] = useState("");
-
-    const [provider, setProvider] = useState(null);
-
-    useEffect(() => {
+    useMemo(() => {
         Promise.resolve(
             (async () => {
                 const instance = await web3Modal.connect();
@@ -36,7 +39,5 @@ export default function Session() {
         );
     });
 
-    return (
-        <Avatar ml="4" size="sm" src={avatar} name={account} cursor="pointer" />
-    );
+    return <Avatar ml="4" size="sm" cursor="pointer" />;
 }

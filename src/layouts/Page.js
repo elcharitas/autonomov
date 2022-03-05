@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Box,
     Drawer,
@@ -14,6 +14,8 @@ import Sidebar from "../components/Sidebar";
 
 export default function Page({ children, title = "" }) {
     const sidebar = useDisclosure();
+    const provider = useState("");
+    const account = useState("");
     const [visible, { toggle }] = useBoolean(true);
     sidebar.toggle = toggle;
     return (
@@ -24,14 +26,19 @@ export default function Page({ children, title = "" }) {
             <Drawer
                 isOpen={sidebar.isOpen}
                 onClose={sidebar.onClose}
-                placement="left">
+                placement="left"
+            >
                 <DrawerOverlay />
                 <DrawerContent>
                     <Sidebar w="full" borderRight="none" />
                 </DrawerContent>
             </Drawer>
-            <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
-                <Header sidebar={sidebar} />
+            <Box ml={{ base: 0, md: visible ? 60 : 0 }} transition=".3s ease">
+                <Header
+                    sidebar={sidebar}
+                    account={account}
+                    provider={provider}
+                />
                 <Box as="main">{children}</Box>
             </Box>
         </Base>

@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // core pages
 import Home from "./pages/Home";
+import Upload from "./pages/Upload";
+import Stream from "./pages/Stream";
 import "@fontsource/poppins";
 
 // 2. Extend the theme to include custom colors, fonts, etc
@@ -14,9 +16,9 @@ const themeDict = {
     },
     colors: {
         brand: {
-            900: "#0f9200",
-            800: "#30cb00",
-            700: "#4ae54a",
+            900: "#ff1166",
+            800: "#ff1166",
+            700: "#ff1166",
         },
     },
 };
@@ -27,6 +29,8 @@ ReactDOM.render(
         <BrowserRouter>
             <Routes>
                 <Route path={"/"} element={<Home />} />
+                <Route path={"/create"} element={<Upload />} />
+                <Route path={"/stream"} element={<Stream />} />
             </Routes>
         </BrowserRouter>
     </ChakraProvider>,

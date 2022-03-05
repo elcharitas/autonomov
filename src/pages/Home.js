@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Link, Stack, useColorModeValue } from "@chakra-ui/react";
+import { Box, Stack, useColorModeValue } from "@chakra-ui/react";
 
 import Page from "../layouts/Page";
 import Hero from "../components/Hero";
