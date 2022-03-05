@@ -17,11 +17,7 @@ import { BiMenuAltLeft, BiVideoPlus } from "react-icons/bi";
 
 import Session from "./Session";
 
-export default function Header({
-    sidebar,
-    account: [, setAccount],
-    provider: [, setProvider],
-}) {
+export default function Header({ sidebar, account, provider }) {
     return (
         <Flex
             as="header"
@@ -32,8 +28,7 @@ export default function Header({
             bg={useColorModeValue("blackAlpha.900", "gray.800")}
             borderBottomWidth="1px"
             borderColor={useColorModeValue("blackAlpha.900", "gray.700")}
-            h="16"
-        >
+            h="16">
             <IconButton
                 aria-label="Menu"
                 display={{ base: "inline-flex" }}
@@ -50,8 +45,7 @@ export default function Header({
             <InputGroup
                 w="100"
                 display={{ base: "none", md: "flex" }}
-                borderColor={useColorModeValue("whiteAlpha.400", "gray.700")}
-            >
+                borderColor={useColorModeValue("whiteAlpha.400", "gray.700")}>
                 <InputLeftElement color="gray.500">
                     <FiSearch />
                 </InputLeftElement>
@@ -72,7 +66,7 @@ export default function Header({
                     size={28}
                     cursor="pointer"
                 />
-                <Session setAccount={setAccount} setProvider={setProvider} />
+                <Session account={account} provider={provider} />
             </Flex>
         </Flex>
     );

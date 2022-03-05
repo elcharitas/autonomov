@@ -1,7 +1,7 @@
 import React from "react";
 import { Button as CButton, useColorModeValue } from "@chakra-ui/react";
 
-const Button = ({ key, size = "sm", text }) => {
+const Button = ({ key, size = "sm", text, ...rest }) => {
     const scheme = "red";
     const step1 = useColorModeValue("600", "300");
     const step2 = useColorModeValue("500", "400");
@@ -32,7 +32,7 @@ const Button = ({ key, size = "sm", text }) => {
                 backgroundSize: "100%",
                 transition: "background 0s",
             }}
-        >
+            {...rest}>
             {text}
         </CButton>
     );
