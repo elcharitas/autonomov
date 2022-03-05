@@ -1,12 +1,18 @@
 import React from "react";
 
-import { Box, Spinner, useColorModeValue, useBoolean } from "@chakra-ui/react";
+import {
+    Box,
+    Center,
+    Spinner,
+    useColorModeValue,
+    useBoolean,
+} from "@chakra-ui/react";
 
 const Base = ({ children, title }) => {
     const [loaded, setLoaded] = useBoolean(false);
 
     document.onreadystatechange = () => {
-        if (document.readyState === "complete") {
+        if (document.readyState !== "loading") {
             setLoaded.on();
         } else if (title) {
             document.title = title;
@@ -19,7 +25,13 @@ const Base = ({ children, title }) => {
             bg={useColorModeValue("gray.50", "gray.700")}
             minH="100vh"
         >
-            {loaded ? children : <Spinner />}
+            {loaded ? (
+                children
+            ) : (
+                <Center>
+                    <Spinner />
+                </Center>
+            )}
         </Box>
     );
 };
