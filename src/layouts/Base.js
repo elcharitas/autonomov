@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
     Box,
@@ -11,13 +11,13 @@ import {
 const Base = ({ children, title }) => {
     const [loaded, setLoaded] = useBoolean(false);
 
-    document.onreadystatechange = () => {
+    useEffect(() => {
         if (document.readyState !== "loading") {
             setLoaded.on();
         } else if (title) {
             document.title = title;
         }
-    };
+    });
 
     return (
         <Box
@@ -28,7 +28,7 @@ const Base = ({ children, title }) => {
             {loaded ? (
                 children
             ) : (
-                <Center>
+                <Center h="100vh">
                     <Spinner />
                 </Center>
             )}
