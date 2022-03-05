@@ -12,9 +12,7 @@ const Base = ({ children, title }) => {
     const [loaded, setLoaded] = useBoolean(true);
 
     useMemo(() => {
-        if (document.readyState === "loading") {
-            setLoaded.off();
-        } else if (title) {
+        if (title) {
             setLoaded.on();
             document.title = title;
         }
