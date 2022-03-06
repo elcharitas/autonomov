@@ -9,6 +9,6 @@ export async function getContract() {
 }
 
 export async function mintVideo(uri, trailer, price) {
-    const contract = await getContract();
+    const contract = new ethers.Contract(contract_addr, contract_abi);
     console.log(await contract.tokenURI(1));
 }
