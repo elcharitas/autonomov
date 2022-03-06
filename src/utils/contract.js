@@ -9,4 +9,5 @@ export async function getContract() {
 
 export async function mintVideo(uri, trailer, price) {
     const contract = await getContract();
+    return await contract.mint(uri, trailer, price);
 }

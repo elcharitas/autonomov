@@ -13,7 +13,6 @@ export default function Session({
         getProvider().then((provider) => {
             setProvider(provider);
             provider.listAccounts().then((str) => {
-                console.log(str);
                 setAccount(str[0]);
             });
         });
