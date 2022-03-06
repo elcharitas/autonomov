@@ -1,22 +1,13 @@
-import { Web3Storage } from "web3.storage/dist/bundle.esm.min.js";
+import * as IPFS from "ipfs-core";
 
-import { apiToken } from "../constants";
-
-export const client = new Web3Storage({ token: apiToken });
+const ipfs = IPFS.create();
 
 /**
  * Upload files to Web3.Storage
  *
- * @param {*} fname
- * @param {*} file
+ * @param {*} data
  * @returns
  */
-export async function uploadFiles(fname, file) {
-    return new Promise((resolve, reject) => {
-        client.put(file, {
-            name: fname,
-            maxRetries: 3,
-            onRootCidReady: resolve,
-        });
-    });
+export async function upload(data) {
+    return await ipfs.then((ipfs) => ipfs.add("Hello world"));
 }

@@ -22,34 +22,35 @@ import {
     VisuallyHidden,
     useBoolean,
 } from "@chakra-ui/react";
-import { FaUser } from "react-icons/fa";
 
 import Page from "../layouts/Page";
 import LogoImage from "../images/logo.png";
 import { mintVideo } from "../utils/contract";
-import { uploadFiles } from "../utils/storage";
+import { upload } from "../utils/storage";
 
 const Upload = () => {
     const [title, setTitle] = useState("");
-    const [fee, setFee] = useState(0);
+    const [fee, setFee] = useState(0.001);
     const [desc, setDesc] = useState("");
     const [poster, setPoster] = useState(LogoImage);
     const [video, setVideo] = useState("");
 
     const [saving, { on, off }] = useBoolean(false);
 
-    const upload = () => {
+    const save = async () => {
         const data = {
             title,
             desc,
             poster,
-            price: fee * 10 ** 9,
+            price: fee * 10 ** 6,
         };
-        console.log(data);
-        if (saving) {
-            uploadFiles();
-            mintVideo();
+        if (title && poster) {
             on();
+            const { cid } = await upload(video);
+            data.cid = cid;
+            const token = JSON.stringify(data);
+            console.log(token);
+            mintVideo(token, cid, data.price);
         } else {
             off();
         }
@@ -317,7 +318,7 @@ const Upload = () => {
                                 _focus={{ shadow: "" }}
                                 fontWeight="md"
                                 isLoading={saving}
-                                onClick={upload}
+                                onClick={save}
                             >
                                 Save and Upload
                             </Button>
