@@ -28,15 +28,16 @@ const web3Modal = new Web3Modal({
     providerOptions,
 });
 
-const getProvider = () => {
+const getProvider = async () => {
     const instance = await web3Modal.connect();
     return new ethers.providers.Web3Provider(instance);
 };
 
 const connectWallet = async ({ setAccount, setProvider }) => {
-    const account = await provider.listAccounts()[0];
-    setProvider(provider);
+    const provider = await getProvider();
+    const account = await provider.listAccounts();
     setAccount(account);
+    setProvider(provider);
 };
 
 export { connectWallet, getProvider };

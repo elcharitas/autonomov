@@ -13,7 +13,7 @@ export const client = new Web3Storage({ token: apiToken });
  */
 export async function uploadFiles(fname, file) {
     return new Promise((resolve, reject) => {
-        await client.put(file, {
+        client.put(file, {
             name: fname,
             maxRetries: 3,
             onRootCidReady: resolve,

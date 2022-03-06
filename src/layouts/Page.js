@@ -11,6 +11,7 @@ import {
 import Base from "./Base";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import { getProvider } from "../utils/connect";
 
 export default function Page({ children, title = "" }) {
     const sidebar = useDisclosure();

@@ -6,7 +6,9 @@ export const infuraId = "765d4237ce7e4d999f706854d5b66fdc";
 export const apiToken =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEZBMmEyNTUyNWNhNWVFODI0MjUwZEQ4Njc3OTZmQmUyMUY3MDg0MTEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDY1NDQ4MTc5MjcsIm5hbWUiOiJBdXRvbm9tb3YifQ.hpukVjif38TWc2h5srYAXI8NW80DBoDfBJUwVBoQfpM";
 
-export const contract_addr = "0xBc8fCCc8C2c35d3744A3C3c34d4402cEa917b8e0";
+export const token_addr = "0xb45d9c6feeaf3cf1d29b0a91d7790abd6fade92a";
+
+export const contract_addr = "0xFC2b384EB1d7Bd9fb04C8ED3Eded6D721Db01206";
 
 export const contract_abi = [
     {
@@ -24,11 +26,6 @@ export const contract_abi = [
     },
     {
         inputs: [
-            {
-                internalType: "uint256",
-                name: "_tokenId",
-                type: "uint256",
-            },
             {
                 internalType: "string",
                 name: "tokenUri",

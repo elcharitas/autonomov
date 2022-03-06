@@ -1,12 +1,16 @@
 import { ethers } from "ethers";
-import { uploadFiles } from "./storage";
 import { getProvider } from "./connect";
 import { contract_abi, contract_addr } from "../constants";
 
-export async function execute(func, args) {
-    const signer = await getProvider().getSigner();
-    const Contract = new ethers.Contract(contract_addr, contract_abi, signer);
-    return await Contract[func](...args);
+export async function getContract() {
+    const provider = await getProvider();
+    const signer = provider.getSigner();
+    return new ethers.Contract(contract_addr, contract_abi, signer);
 }
 
-export function mintVideo(file, title) {}
+export async function mintVideo(uri, trailer, price) {
+    const contract = await getContract();
+    const data = await contract.tokenURI(1);
+    console.log(await data.wait());
+    console.log(data);
+}
