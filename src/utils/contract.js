@@ -4,7 +4,8 @@ import { contract_abi, contract_addr } from "../constants";
 
 export async function getContract() {
     const provider = await getProvider();
-    return new ethers.Contract(contract_addr, contract_abi, provider);
+    const signer = await provider.getSigner();
+    return new ethers.Contract(contract_addr, contract_abi, signer);
 }
 
 export async function mintVideo(uri, trailer, price) {
