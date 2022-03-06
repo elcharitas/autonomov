@@ -9,15 +9,6 @@ export default function Session({
 }) {
     const isGuest = useMemo(() => !account);
 
-    useEffect(() => {
-        getProvider().then((provider) => {
-            setProvider(provider);
-            provider.listAccounts().then((str) => {
-                setAccount(str[0]);
-            });
-        });
-    });
-
     return isGuest ? (
         <Button
             ml="4"
