@@ -5,7 +5,7 @@ import Page from "../layouts/Page";
 const Stream = () => {
     return (
         <Page>
-            <Box>Live peer World</Box>
+            <Box>In progress</Box>
         </Page>
     );
 };

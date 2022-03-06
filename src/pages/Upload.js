@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     chakra,
     Box,
@@ -15,17 +15,45 @@ import {
     InputLeftAddon,
     FormHelperText,
     Textarea,
-    Avatar,
+    Center,
+    Image,
     Icon,
     Button,
     VisuallyHidden,
+    useBoolean,
 } from "@chakra-ui/react";
 import { FaUser } from "react-icons/fa";
 
 import Page from "../layouts/Page";
+import LogoImage from "../images/logo.png";
 import { mintVideo } from "../utils/contract";
+import { uploadFiles } from "../utils/storage";
 
 const Upload = () => {
+    const [title, setTitle] = useState("");
+    const [fee, setFee] = useState(0);
+    const [desc, setDesc] = useState("");
+    const [poster, setPoster] = useState(LogoImage);
+    const [video, setVideo] = useState("");
+
+    const [saving, { on, off }] = useBoolean(false);
+
+    const upload = () => {
+        const data = {
+            title,
+            desc,
+            poster,
+            price: fee * 10 ** 9,
+        };
+        console.log(data);
+        if (saving) {
+            uploadFiles();
+            mintVideo();
+            on();
+        } else {
+            off();
+        }
+    };
     return (
         <Page>
             <Box bg={useColorModeValue("gray.50", "inherit")} p={10}>
@@ -60,6 +88,10 @@ const Upload = () => {
                                             placeholder="My First Content"
                                             focusBorderColor="brand.400"
                                             rounded="md"
+                                            value={title}
+                                            onChange={(e) =>
+                                                setTitle(e.target.value)
+                                            }
                                         />
                                     </InputGroup>
                                 </FormControl>
@@ -88,13 +120,17 @@ const Upload = () => {
                                             )}
                                             rounded="md"
                                         >
-                                            $
+                                            $MATIC
                                         </InputLeftAddon>
                                         <Input
                                             type="number"
                                             placeholder="10"
                                             focusBorderColor="brand.400"
                                             rounded="md"
+                                            value={fee}
+                                            onChange={(e) =>
+                                                setFee(e.target.value)
+                                            }
                                         />
                                     </InputGroup>
                                 </FormControl>
@@ -113,12 +149,16 @@ const Upload = () => {
                                         Content Description
                                     </FormLabel>
                                     <Textarea
-                                        placeholder="you@example.com"
+                                        placeholder="Sample Video Description"
                                         mt={1}
                                         rows={3}
                                         shadow="sm"
                                         focusBorderColor="brand.400"
                                         fontSize={{ sm: "sm" }}
+                                        value={desc}
+                                        onChange={(e) =>
+                                            setDesc(e.target.value)
+                                        }
                                     />
                                     <FormHelperText>
                                         Brief description for your video. URLs
@@ -127,143 +167,140 @@ const Upload = () => {
                                 </FormControl>
                             </div>
 
-                            <FormControl>
-                                <FormLabel
-                                    fontSize="sm"
-                                    fontWeight="md"
-                                    color={useColorModeValue(
-                                        "gray.700",
-                                        "gray.50"
-                                    )}
-                                >
-                                    Video Poster Image
-                                </FormLabel>
-                                <Flex alignItems="center" mt={1}>
-                                    <Avatar
-                                        boxSize={12}
-                                        bg={useColorModeValue(
-                                            "gray.100",
-                                            "gray.800"
-                                        )}
-                                        icon={
-                                            <Icon
-                                                as={FaUser}
-                                                boxSize={9}
-                                                mt={3}
-                                                rounded="full"
-                                                color={useColorModeValue(
-                                                    "gray.300",
-                                                    "gray.700"
-                                                )}
-                                            />
-                                        }
+                            <Flex alignItems="center" mt={1}>
+                                <FormControl mt="-4">
+                                    <Image
+                                        src={poster}
+                                        alt=""
+                                        width="100"
+                                        height="100"
                                     />
-                                    <Button
-                                        type="button"
-                                        ml={5}
-                                        variant="outline"
-                                        size="sm"
-                                        fontWeight="medium"
-                                        _focus={{ shadow: "none" }}
-                                    >
-                                        Change
-                                    </Button>
-                                </Flex>
-                            </FormControl>
+                                    <Input
+                                        w="150px"
+                                        type="file"
+                                        placeholder="Change Poster"
+                                        onChange={(e) => {
+                                            let reader = new FileReader();
+                                            reader.readAsDataURL(
+                                                e.target.files[0]
+                                            );
+                                            reader.onload = () => {
+                                                setPoster(reader.result);
+                                            };
+                                        }}
+                                    />
+                                </FormControl>
 
-                            <FormControl>
-                                <FormLabel
-                                    fontSize="sm"
-                                    fontWeight="md"
-                                    color={useColorModeValue(
-                                        "gray.700",
-                                        "gray.50"
-                                    )}
-                                >
-                                    Video File
-                                </FormLabel>
-                                <Flex
-                                    mt={1}
-                                    justify="center"
-                                    px={6}
-                                    pt={5}
-                                    pb={6}
-                                    borderWidth={2}
-                                    borderColor={useColorModeValue(
-                                        "gray.300",
-                                        "gray.500"
-                                    )}
-                                    borderStyle="dashed"
-                                    rounded="md"
-                                >
-                                    <Stack spacing={1} textAlign="center">
-                                        <Icon
-                                            mx="auto"
-                                            boxSize={12}
-                                            color={useColorModeValue(
-                                                "gray.400",
-                                                "gray.500"
-                                            )}
-                                            stroke="currentColor"
-                                            fill="none"
-                                            viewBox="0 0 48 48"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </Icon>
-                                        <Flex
-                                            fontSize="sm"
-                                            color={useColorModeValue(
-                                                "gray.600",
-                                                "gray.400"
-                                            )}
-                                            alignItems="baseline"
-                                        >
-                                            <chakra.label
-                                                htmlFor="file-upload"
-                                                cursor="pointer"
-                                                rounded="md"
-                                                fontSize="md"
+                                <FormControl>
+                                    <FormLabel
+                                        fontSize="sm"
+                                        fontWeight="md"
+                                        color={useColorModeValue(
+                                            "gray.700",
+                                            "gray.50"
+                                        )}
+                                    >
+                                        Video File
+                                    </FormLabel>
+                                    <Flex
+                                        mt={1}
+                                        justify="center"
+                                        px={6}
+                                        pt={5}
+                                        pb={6}
+                                        borderWidth={2}
+                                        borderColor={useColorModeValue(
+                                            "gray.300",
+                                            "gray.500"
+                                        )}
+                                        borderStyle="dashed"
+                                        rounded="md"
+                                    >
+                                        <Stack spacing={1} textAlign="center">
+                                            <Icon
+                                                mx="auto"
+                                                boxSize={12}
                                                 color={useColorModeValue(
-                                                    "brand.600",
-                                                    "brand.200"
+                                                    "gray.400",
+                                                    "gray.500"
                                                 )}
-                                                pos="relative"
-                                                _hover={{
-                                                    color: useColorModeValue(
-                                                        "brand.400",
-                                                        "brand.300"
-                                                    ),
-                                                }}
+                                                stroke="currentColor"
+                                                fill="none"
+                                                viewBox="0 0 48 48"
+                                                aria-hidden="true"
                                             >
-                                                <span>Upload a file</span>
-                                                <VisuallyHidden>
-                                                    <input
-                                                        id="file-upload"
-                                                        name="file-upload"
-                                                        type="file"
-                                                    />
-                                                </VisuallyHidden>
-                                            </chakra.label>
-                                            <Text pl={1}>or drag and drop</Text>
-                                        </Flex>
-                                        <Text
-                                            fontSize="xs"
-                                            color={useColorModeValue(
-                                                "gray.500",
-                                                "gray.50"
-                                            )}
-                                        >
-                                            MP4 up to 100MB
-                                        </Text>
-                                    </Stack>
-                                </Flex>
-                            </FormControl>
+                                                <path
+                                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                    strokeWidth="2"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                />
+                                            </Icon>
+                                            <Flex
+                                                fontSize="sm"
+                                                color={useColorModeValue(
+                                                    "gray.600",
+                                                    "gray.400"
+                                                )}
+                                                alignItems="baseline"
+                                            >
+                                                <chakra.label
+                                                    htmlFor="file-upload"
+                                                    cursor="pointer"
+                                                    rounded="md"
+                                                    fontSize="md"
+                                                    color={useColorModeValue(
+                                                        "brand.600",
+                                                        "brand.200"
+                                                    )}
+                                                    pos="relative"
+                                                    _hover={{
+                                                        color: useColorModeValue(
+                                                            "brand.400",
+                                                            "brand.300"
+                                                        ),
+                                                    }}
+                                                >
+                                                    <span>Upload a file</span>
+                                                    <VisuallyHidden>
+                                                        <input
+                                                            id="file-upload"
+                                                            name="file-upload"
+                                                            type="file"
+                                                            onChange={(e) => {
+                                                                let reader =
+                                                                    new FileReader();
+                                                                reader.readAsDataURL(
+                                                                    e.target
+                                                                        .files[0]
+                                                                );
+                                                                reader.onload =
+                                                                    () => {
+                                                                        setVideo(
+                                                                            reader.result
+                                                                        );
+                                                                    };
+                                                            }}
+                                                        />
+                                                    </VisuallyHidden>
+                                                </chakra.label>
+                                                <Text pl={1}>
+                                                    or drag and drop
+                                                </Text>
+                                            </Flex>
+                                            <Text
+                                                fontSize="xs"
+                                                color={useColorModeValue(
+                                                    "gray.500",
+                                                    "gray.50"
+                                                )}
+                                            >
+                                                MP4 up to 100MB
+                                            </Text>
+                                        </Stack>
+                                    </Flex>
+                                </FormControl>
+                            </Flex>
                         </Stack>
                         <Box
                             px={{ base: 4, sm: 6 }}
@@ -275,14 +312,12 @@ const Upload = () => {
                             textAlign="right"
                         >
                             <Button
+                                bgColor="red.700"
                                 colorScheme="brand"
                                 _focus={{ shadow: "" }}
                                 fontWeight="md"
-                                onClick={() =>
-                                    mintVideo("elcharitas", "ebube", 3000)
-                                        .then(console.log)
-                                        .catch(console.log)
-                                }
+                                isLoading={saving}
+                                onClick={upload}
                             >
                                 Save and Upload
                             </Button>

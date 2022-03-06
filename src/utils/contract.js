@@ -12,3 +12,13 @@ export async function mintVideo(uri, trailer, price) {
     const contract = await getContract();
     return await contract.mint(uri, trailer, price);
 }
+
+export async function getVideo(id) {
+    const contract = await getContract();
+    return JSON.parse(await contract.tokenURI(id));
+}
+
+export async function videoCount() {
+    const contract = await getContract();
+    return await contract.tokenCount();
+}

@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // core pages
 import Home from "./pages/Home";
 import Upload from "./pages/Upload";
-import Stream from "./pages/Stream";
+import Fallback from "./pages/Stream";
 import "@fontsource/poppins";
 
 // 2. Extend the theme to include custom colors, fonts, etc
@@ -30,7 +30,7 @@ ReactDOM.render(
             <Routes>
                 <Route path={"/"} element={<Home />} />
                 <Route path={"/create"} element={<Upload />} />
-                <Route path={"/stream"} element={<Stream />} />
+                <Route path={"/:fallback"} element={<Fallback />} />
             </Routes>
         </BrowserRouter>
     </ChakraProvider>,
