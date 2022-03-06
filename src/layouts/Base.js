@@ -13,7 +13,7 @@ const Base = ({ children, title }) => {
 
     useMemo(() => {
         if (title) {
-            setLoaded.on();
+            //setLoaded.on();
             document.title = title;
         }
     });

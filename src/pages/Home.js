@@ -3,7 +3,6 @@ import { Box, Stack, useColorModeValue } from "@chakra-ui/react";
 
 import Page from "../layouts/Page";
 import Hero from "../components/Hero";
-import Footer from "../components/Footer";
 import Card from "../components/Card";
 
 const Home = () => {
@@ -29,7 +28,6 @@ const Home = () => {
                     <Card title="Video #2" />
                 </Stack>
             </Box>
-            <Footer color={color} />
         </Page>
     );
 };

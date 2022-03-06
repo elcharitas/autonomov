@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Upload from "./pages/Upload";
 import Fallback from "./pages/Stream";
+import View from "./pages/View";
 import "@fontsource/poppins";
 
 // 2. Extend the theme to include custom colors, fonts, etc
@@ -30,6 +31,7 @@ ReactDOM.render(
             <Routes>
                 <Route path={"/"} element={<Home />} />
                 <Route path={"/create"} element={<Upload />} />
+                <Route path={"/watch/:id"} element={<View />} />
                 <Route path={"/:fallback"} element={<Fallback />} />
             </Routes>
         </BrowserRouter>

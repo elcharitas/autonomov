@@ -5,10 +5,12 @@ import {
     DrawerContent,
     DrawerOverlay,
     useDisclosure,
+    useColorModeValue,
     useBoolean,
 } from "@chakra-ui/react";
 
 import Base from "./Base";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import { getProvider } from "../utils/connect";
@@ -17,6 +19,7 @@ export default function Page({ children, title = "" }) {
     const sidebar = useDisclosure();
     const provider = useState("");
     const account = useState("");
+    const color = useColorModeValue("gray.50", "gray.700");
     const [visible, { toggle }] = useBoolean(true);
     sidebar.toggle = toggle;
     return (
@@ -40,7 +43,10 @@ export default function Page({ children, title = "" }) {
                     account={account}
                     provider={provider}
                 />
-                <Box as="main">{children}</Box>
+                <Box as="main">
+                    {children}
+                    <Footer color={color} />
+                </Box>
             </Box>
         </Base>
     );
