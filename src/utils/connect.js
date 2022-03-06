@@ -23,14 +23,14 @@ const providerOptions = {
 const web3Modal = new Web3Modal({
     chainId: "80001", // polygon mumbai chain Id
     theme: "dark",
-    cacheProvider: false,
+    cacheProvider: true,
     disableInjectedProvider: false,
     providerOptions,
 });
 
 const getProvider = async () => {
-    if (!window.instance) window.instance = await web3Modal.connect();
-    return new ethers.providers.Web3Provider(window.instance);
+    const instance = await web3Modal.connect();
+    return new ethers.providers.Web3Provider(instance);
 };
 
 const connectWallet = async ({ setAccount, setProvider }) => {
