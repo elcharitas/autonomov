@@ -29,8 +29,8 @@ const web3Modal = new Web3Modal({
 });
 
 const getProvider = async () => {
-    const instance = await web3Modal.connect();
-    return new ethers.providers.Web3Provider(instance);
+    window.instance = window.instance || (await web3Modal.connect());
+    return new ethers.providers.Web3Provider(window.instance);
 };
 
 const connectWallet = async ({ setAccount, setProvider }) => {
