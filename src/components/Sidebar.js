@@ -41,14 +41,21 @@ const Sidebar = (props) => {
                 borderTop={"1px"}
                 borderColor={useColorModeValue("whiteAlpha.400", "gray.700")}
             >
-                <NavItem icon={MdHome}>Home</NavItem>
+                <NavItem icon={MdHome} href="/">
+                    Home
+                </NavItem>
                 <NavItem icon={HiCollection}>Explore</NavItem>
                 <NavItem icon={FaRss}>Trending</NavItem>
                 <Divider py="1em" mb="1.5em" />
                 <NavItem icon={HiCollection}>Collections</NavItem>
                 <NavItem icon={FaClipboardCheck}>Live Streams</NavItem>
                 <Divider py="1em" mb="1.5em" />
-                <NavItem icon={AiFillGift}>Changelog</NavItem>
+                <NavItem
+                    icon={AiFillGift}
+                    href="https://github.com/elcharitas/autonomov"
+                >
+                    Changelog
+                </NavItem>
                 <NavItem icon={BsGearFill}>Settings</NavItem>
             </Flex>
         </Box>
