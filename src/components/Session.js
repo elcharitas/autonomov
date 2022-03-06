@@ -1,19 +1,16 @@
-import React, { useMemo, useEffect } from "react";
-import { Avatar, useConst } from "@chakra-ui/react";
+import React from "react";
+import { Avatar, useBoolean } from "@chakra-ui/react";
 import Button from "./Button";
-import { connectWallet, getProvider } from "../utils/connect";
+import { connectWallet } from "../utils/connect";
 
-export default function Session({
-    account: [account, setAccount],
-    provider: [, setProvider],
-}) {
-    const isGuest = useMemo(() => !account);
+export default function Session() {
+    const [isLogged, { on }] = useBoolean();
 
-    return isGuest ? (
+    return isLogged ? (
         <Button
             ml="4"
             text="Connect Wallet"
-            onClick={connectWallet.bind({}, { setAccount, setProvider })}
+            onClick={connectWallet.bind({}, on)}
         />
     ) : (
         <Avatar ml="4" size="sm" cursor="pointer" />

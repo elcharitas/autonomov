@@ -33,11 +33,10 @@ const getProvider = async () => {
     return new ethers.providers.Web3Provider(instance);
 };
 
-const connectWallet = async ({ setAccount, setProvider }) => {
+const connectWallet = async (callback) => {
     const provider = await getProvider();
     const account = await provider.listAccounts();
-    setAccount(account);
-    setProvider(provider);
+    callback(account);
 };
 
 export { connectWallet, getProvider };
