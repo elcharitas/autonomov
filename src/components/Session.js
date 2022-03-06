@@ -4,7 +4,9 @@ import Button from "./Button";
 import { connectWallet } from "../utils/connect";
 
 export default function Session() {
-    const [isLogged, { on }] = useBoolean();
+    const [isLogged, { on }] = useBoolean(
+        localStorage.getItem("WEB3_CONNECT_CACHED_PROVIDER")?.length > 0
+    );
 
     return isLogged ? (
         <Button
