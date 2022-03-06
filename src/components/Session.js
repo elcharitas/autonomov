@@ -7,12 +7,13 @@ export default function Session({
     account: [account, setAccount],
     provider: [, setProvider],
 }) {
-    const isGuest = useMemo(() => account.length == 0);
+    const isGuest = useMemo(() => !account);
 
     useEffect(() => {
         getProvider().then((provider) => {
             setProvider(provider);
             provider.listAccounts().then((str) => {
+                console.log(str);
                 setAccount(str[0]);
             });
         });
