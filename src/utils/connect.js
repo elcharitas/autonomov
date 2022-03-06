@@ -29,7 +29,7 @@ const web3Modal = new Web3Modal({
 });
 
 const getProvider = async () => {
-    window.instance = window.instance || (await web3Modal.connect());
+    if (!window.instance) window.instance = await web3Modal.connect();
     return new ethers.providers.Web3Provider(window.instance);
 };
 
