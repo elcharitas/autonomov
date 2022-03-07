@@ -8,5 +8,5 @@ import IPFS from "ipfs-core";
  */
 export async function upload(data) {
     const ipfs = IPFS.create();
-    return await ipfs.then((ipfs) => ipfs.add("Hello world"));
+    return await ipfs.then((ipfs) => ipfs.add(data));
 }

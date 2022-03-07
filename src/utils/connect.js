@@ -1,22 +1,9 @@
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 
-// infuraId needed for wallet options
-import { infuraId } from "../constants";
-
 const providerOptions = {
     binancechainwallet: {
         package: true,
-    },
-    walletconnect: {
-        options: {
-            infuraId,
-        },
-    },
-    walletlink: {
-        options: {
-            infuraId,
-        },
     },
 };
 

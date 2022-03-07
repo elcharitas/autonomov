@@ -16,7 +16,6 @@ import {
     InputLeftAddon,
     FormHelperText,
     Textarea,
-    Center,
     Image,
     Icon,
     Button,
