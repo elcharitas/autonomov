@@ -15,7 +15,6 @@ const Home = () => {
     const color = useColorModeValue("gray.50", "gray.700");
     setTimeout(() => {
         getVideo(1).then(async (data) => {
-            console.log(data);
             try {
                 videos[0] = data;
             } catch (e) {}
@@ -35,7 +34,7 @@ const Home = () => {
                 >
                     {videos.map(({ title, poster }, id) => (
                         <Link to={"/watch/" + id}>
-                            <Card title={title} image={poster} />
+                            <Card key={id} title={title} image={poster} />
                         </Link>
                     ))}
                 </Stack>
