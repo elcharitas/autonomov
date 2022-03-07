@@ -48,7 +48,7 @@ const Upload = () => {
         };
         if (title && poster) {
             on();
-            setStaus("Creating Trailer");
+            setStatus("Creating Trailer");
             const faker = JSON.stringify(data);
             setStatus("Uploading Video");
             const { cid } = await upload(video);

@@ -21,16 +21,6 @@ const Home = () => {
             } catch (e) {}
         });
     });
-    setInterval(() => {
-        const id = videos.length;
-        getVideo(++id).then(async (data) => {
-            try {
-                videos[id] = JSON.parse(data);
-            } catch (e) {
-                videos[id] = { poster: LogoImage };
-            }
-        });
-    });
     return (
         <Page>
             <Hero />
