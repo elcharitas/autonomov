@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
     chakra,
     Box,
@@ -38,25 +39,30 @@ const Upload = () => {
     const [saving, { on, off }] = useBoolean(false);
     const [status, setStatus] = useState("");
 
+    const goto = useNavigate();
+
     const save = async () => {
         const data = {
             title,
             desc,
             poster,
             price: fee * 10 ** 9,
-            cid: 0,
+            video: 0,
         };
         if (title && poster) {
             on();
-            setStatus("Creating Trailer");
-            const faker = JSON.stringify(data);
-            setStatus("Uploading Video");
-            const { cid } = await upload(video);
-            setStatus("Creating Data");
-            data.cid = cid;
-            const token = JSON.stringify(data);
+            const fakerData = JSON.stringify(data);
+            const { cid: faker } = await upload(fakerData);
+            data.video = video;
+            const tokenData = JSON.stringify(data);
             setStatus("Minting Video");
-            mintVideo(token, faker, data.price).then(off);
+            const { cid: token } = await upload(tokenData);
+            console.log(token);
+            console.log(faker);
+            console.log(data.price);
+            mintVideo(token, faker, data.price)
+                .then(() => goto("/"))
+                .catch(off);
         } else {
             off();
         }
@@ -191,8 +197,15 @@ const Upload = () => {
                                             reader.readAsDataURL(
                                                 e.target.files[0]
                                             );
-                                            reader.onload = () => {
-                                                setPoster(reader.result);
+                                            reader.onload = async () => {
+                                                setStatus("Uploading Poster");
+                                                setPoster(
+                                                    (
+                                                        await upload(
+                                                            reader.result
+                                                        )
+                                                    ).cid
+                                                );
                                             };
                                         }}
                                     />
@@ -282,9 +295,17 @@ const Upload = () => {
                                                                         .files[0]
                                                                 );
                                                                 reader.onload =
-                                                                    () => {
+                                                                    async () => {
+                                                                        setStatus(
+                                                                            "Uploading Video"
+                                                                        );
                                                                         setVideo(
-                                                                            reader.result
+                                                                            (
+                                                                                await upload(
+                                                                                    reader.result
+                                                                                )
+                                                                            )
+                                                                                .cid
                                                                         );
                                                                     };
                                                             }}

@@ -15,9 +15,9 @@ const Home = () => {
     const color = useColorModeValue("gray.50", "gray.700");
     setTimeout(() => {
         getVideo(1).then(async (data) => {
+            console.log(data);
             try {
-                videos[0] = JSON.parse(data);
-                videos[0].video = videos[0];
+                videos[0] = data;
             } catch (e) {}
         });
     });

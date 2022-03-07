@@ -15,7 +15,8 @@ export async function mintVideo(uri, trailer, price) {
 
 export async function getVideo(id) {
     const contract = await getContract();
-    return JSON.parse(await contract.tokenURI(id));
+    const data = await contract.tokenURI(id);
+    return JSON.parse(data || "{}");
 }
 
 export async function videoCount() {
