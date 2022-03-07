@@ -20,18 +20,6 @@ const Footer = ({ color }) => {
             <Link href="" color="red.500" to="/">
                 IPFS
             </Link>
-            , &nbsp;
-            <Link href="" color="red.500" to="/">
-                OrbitDB
-            </Link>
-            , &nbsp;
-            <Link href="" color="red.500" to="/">
-                Web3.Storage
-            </Link>
-            , &nbsp;
-            <Link href="https://livepeer.com" color="red.500" to="/">
-                LivePeer
-            </Link>
             , on the Polygon Mumbai Network
         </Box>
     );

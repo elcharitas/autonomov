@@ -4,7 +4,7 @@ import { contract_abi, contract_addr } from "../constants";
 
 export async function getContract() {
     const provider = await getProvider();
-    const signer = await provider.getSigner();
+    const signer = provider.getSigner();
     return new ethers.Contract(contract_addr, contract_abi, signer);
 }
 

@@ -5,21 +5,13 @@ import { Box, Stack, useColorModeValue } from "@chakra-ui/react";
 import Page from "../layouts/Page";
 import Hero from "../components/Hero";
 import Card from "../components/Card";
-import LogoImage from "../images/logo.png";
-import { getVideo } from "../utils/contract";
 
 const videos = [];
 
 const Home = () => {
     const bg = useColorModeValue("blackAlpha.900", "gray.50");
     const color = useColorModeValue("gray.50", "gray.700");
-    setTimeout(() => {
-        getVideo(1).then(async (data) => {
-            try {
-                videos[0] = data;
-            } catch (e) {}
-        });
-    });
+
     return (
         <Page>
             <Hero />
