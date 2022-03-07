@@ -1,4 +1,4 @@
-import IPFS from "ipfs-core";
+import * as IPFS from "ipfs-core";
 
 /**
  * Upload files to Web3.Storage
