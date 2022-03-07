@@ -13,12 +13,9 @@ import Base from "./Base";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import { getProvider } from "../utils/connect";
 
 export default function Page({ children, title = "" }) {
     const sidebar = useDisclosure();
-    const provider = useState("");
-    const account = useState("");
     const color = useColorModeValue("gray.50", "gray.700");
     const [visible, { toggle }] = useBoolean(true);
     sidebar.toggle = toggle;
@@ -38,11 +35,7 @@ export default function Page({ children, title = "" }) {
                 </DrawerContent>
             </Drawer>
             <Box ml={{ base: 0, md: visible ? 60 : 0 }} transition=".3s ease">
-                <Header
-                    sidebar={sidebar}
-                    account={account}
-                    provider={provider}
-                />
+                <Header sidebar={sidebar} />
                 <Box as="main">
                     {children}
                     <Footer color={color} />
