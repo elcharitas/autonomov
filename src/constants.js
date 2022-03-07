@@ -1,10 +1,5 @@
 /** The Name of our amazinng dApp */
-export const appName = "Autonomov Theater";
-
-export const infuraId = "765d4237ce7e4d999f706854d5b66fdc";
-
-export const apiToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEZBMmEyNTUyNWNhNWVFODI0MjUwZEQ4Njc3OTZmQmUyMUY3MDg0MTEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NDY1NDQ4MTc5MjcsIm5hbWUiOiJBdXRvbm9tb3YifQ.hpukVjif38TWc2h5srYAXI8NW80DBoDfBJUwVBoQfpM";
+export const appName = "Autonomov";
 
 export const token_addr = "0xb45d9c6feeaf3cf1d29b0a91d7790abd6fade92a";
 
