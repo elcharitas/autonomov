@@ -1,6 +1,4 @@
-import * as IPFS from "ipfs-core";
-
-const ipfs = IPFS.create();
+import IPFS from "ipfs-core";
 
 /**
  * Upload files to Web3.Storage
@@ -9,5 +7,6 @@ const ipfs = IPFS.create();
  * @returns
  */
 export async function upload(data) {
+    const ipfs = IPFS.create();
     return await ipfs.then((ipfs) => ipfs.add("Hello world"));
 }
