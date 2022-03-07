@@ -36,21 +36,27 @@ const Upload = () => {
     const [video, setVideo] = useState("");
 
     const [saving, { on, off }] = useBoolean(false);
+    const [status, setStatus] = useState("");
 
     const save = async () => {
         const data = {
             title,
             desc,
             poster,
-            price: fee * 10 ** 6,
+            price: fee * 10 ** 9,
+            cid: 0,
         };
         if (title && poster) {
             on();
+            setStaus("Creating Trailer");
+            const faker = JSON.stringify(data);
+            setStatus("Uploading Video");
             const { cid } = await upload(video);
+            setStatus("Creating Data");
             data.cid = cid;
             const token = JSON.stringify(data);
-            console.log(token);
-            mintVideo(token, cid, data.price);
+            setStatus("Minting Video");
+            mintVideo(token, faker, data.price).then(off);
         } else {
             off();
         }
@@ -318,6 +324,7 @@ const Upload = () => {
                                 _focus={{ shadow: "" }}
                                 fontWeight="md"
                                 isLoading={saving}
+                                loadingText={status}
                                 onClick={save}
                             >
                                 Save and Upload

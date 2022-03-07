@@ -8,7 +8,7 @@ export const apiToken =
 
 export const token_addr = "0xb45d9c6feeaf3cf1d29b0a91d7790abd6fade92a";
 
-export const contract_addr = "0xFC2b384EB1d7Bd9fb04C8ED3Eded6D721Db01206";
+export const contract_addr = "0x630ad5EebB3A086d9052C88d8eA33b948AEFE9CE";
 
 export const contract_abi = [
     {
