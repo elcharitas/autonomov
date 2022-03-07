@@ -10,7 +10,6 @@ import Plyr from "plyr";
 
 import Page from "../layouts/Page";
 import Stream from "./Stream";
-import "plyr/dist/plyr.css";
 import { getVideo } from "../utils/contract";
 
 const View = () => {
